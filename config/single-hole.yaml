@@ -1,0 +1,24 @@
+defaults:
+  - config
+  - _self_
+
+record: True
+headless: True
+max_ticks: 1000
+
+log:
+  clearml: True
+
+init:
+  platelets:
+    margin: [50, 50]
+    nests: 1
+    nest:
+      platelets: 50
+      std: 2
+
+scenario:
+  ntb: [7]
+
+clearml:
+  newtask: True

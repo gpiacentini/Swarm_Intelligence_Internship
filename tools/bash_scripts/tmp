@@ -1,0 +1,3 @@
+eval `ssh-agent`
+ssh-add .ssh/id_rsa
+clearml-agent daemon --queue parallel-cpu --cpu-only --docker ubuntu:20.04

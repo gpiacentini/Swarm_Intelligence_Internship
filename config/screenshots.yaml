@@ -1,0 +1,78 @@
+defaults:
+  - config
+  - _self_
+
+record: True
+headless: True
+max_ticks: 1000
+
+log:
+  clearml: True
+
+init:
+  platelets:
+    margin: [50, 50]
+    nests: 1
+    nest:
+      platelets: 50
+      std: 2
+
+scenario:
+  ntb: [7]
+
+clearml:
+  newtask: True
+
+
+world:
+  background: "white"
+
+render:
+  platelet:
+    width: 7
+    height: 12
+    colors:
+      idle: black
+      bound: white
+      bounding: red
+      bound-commit: red
+      active: black
+      exit: white
+      fault: yellow
+      levels:
+        - "#cd0000"
+        - "#ff6800"
+        - "#ffe600"
+        - "#ceff29"
+        - "#97ff60"
+        - "#60ff97"
+        - "#29ffce"
+        - "#0090ff"
+        - "#0008ff"
+
+    show_level: True
+    show_communication_radius: False
+    show_perceive_radius: True
+    show_connections: False
+  
+  node:
+    size: 3
+    colors:
+      fault: red
+      intact: green
+      boundary: white
+      levels:
+        - "#cd0000"
+        - "#ff6800"
+        - "#ffe600"
+        - "#ceff29"
+        - "#97ff60"
+        - "#60ff97"
+        - "#29ffce"
+        - "#0090ff"
+        - "#0008ff"
+
+    show_level: True
+    show_communication_radius: False
+    show_perceive_radius: True
+    show_connections: False
