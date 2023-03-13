@@ -47,6 +47,6 @@ def render_fn(*, window, objects, state):
 
 
 
-# Node logic
+# Node logic, the node only know about his state not the one of the others
 def node_logic(node):
     return node
