@@ -47,6 +47,6 @@ def render_fn(*, window, objects, state):
 
 
 
-# Node logic, the node only know about his state not the one of the others
+# Node logic, the node only know about his state not the one of the others, actions repeated every thick
 def node_logic(node):
     return node

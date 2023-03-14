@@ -69,8 +69,9 @@ def main(cfg):
         function=TickFunction(
             fn=node_logic,
             backend="python",
-            inputs=["boundary", "id", "fault"],
-            outputs=["v", "w"],
+            inputs=["boundary", "id", "fault"], # everythime i want to access a specific attribute, i have to add it to the list
+            # inputs=[dataframe.columns] in this way i have access to all the attributes
+            outputs=["v", "w"], # same thing for the output
             types=dict(
                 range_and_bearing="object",
             )
