@@ -53,6 +53,6 @@ def render_nodes(*, window, nodes, state):
                 )
         else:
             font = pygame.font.SysFont("Comic Sans MS", 20)
-            text_surface = font.render(f"{node.id}", False, (255, 255, 255))
+            text_surface = font.render(f"{node.id}", False, (0, 0, 0))
             pos = pygame.math.Vector2(position)
             window.blit(text_surface, pos - pygame.math.Vector2(5, 5))
