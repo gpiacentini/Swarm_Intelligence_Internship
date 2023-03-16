@@ -24,6 +24,7 @@ def events_fn(*, objects, events, state):
             if key == "a":
                 if "display_active" not in state: state["display_active"] = False
                 else: state["display_active"] = not state["display_active"]
+                
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
@@ -49,4 +50,5 @@ def render_fn(*, window, objects, state):
 
 # Node logic, the node only know about his state not the one of the others, actions repeated every thick
 def node_logic(node):
+    
     return node

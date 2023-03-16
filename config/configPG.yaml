@@ -50,7 +50,7 @@ world:
   size: [1000, 1000]
   margin: [100, 100]
   fps: 30
-  background: "black"
+  background: "white"
 
 render:
   body:
@@ -61,8 +61,8 @@ render:
       bound: red
       bounding: green
       bound-commit: yellow
-      active: white
-      exit: white
+      active: black
+      exit: black
       fault: yellow
       levels:
         - "#FF0000"
@@ -74,10 +74,10 @@ render:
         - "#00FFFF"
         - "#0080FF"
         - "#0000FF"
-        - pink
+        - black
 
     show_level: True
-    show_communication_radius: True
+    show_communication_radius: False
     show_perceive_radius: True
     show_connections: False
   
@@ -85,8 +85,8 @@ render:
     size: 5
     colors:
       fault: red
-      intact: green
-      boundary: white
+      intact: black
+      boundary: black
       levels:
         - "#FF0000"
         - "#FF8000"
@@ -97,7 +97,7 @@ render:
         - "#00FFFF"
         - "#0080FF"
         - "#0000FF"
-        - red
+        - black
 
     show_level: True
     show_communication_radius: False

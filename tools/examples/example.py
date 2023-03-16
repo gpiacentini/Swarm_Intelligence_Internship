@@ -4,6 +4,7 @@ import math
 import random
 import pygame
 
+
 from collections import Counter
 from src.simulator import Simulator, RenderFunction, GlobalFunction, TickFunction
 from src.logic.common import get_move, range_and_bearing

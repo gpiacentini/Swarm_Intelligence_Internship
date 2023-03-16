@@ -14,7 +14,7 @@ from src.logic.controller.metrics import CoverageMetric
 from src.scenario.generate import generate
 
 
-@hydra.main(version_base=None, config_path="config", config_name="config")
+@hydra.main(version_base=None, config_path="config", config_name="configPG")
 def main(cfg):
     if cfg.seed == -1:
         cfg.seed = np.random.randint(0, 2**32-1)
