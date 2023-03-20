@@ -5,7 +5,7 @@ import numpy as np
 from src.simulator import Hook
 from src.logger import GlobalLogger
 
-# Whitin the class i pass objects, so i have information about all the nodes #
+# Whitin the class i pass objects, so i have information about all the characteristic of the nodes #
 
 class CoverageMetric(Hook):
     def __init__(self, cfg):

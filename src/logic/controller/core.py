@@ -3,7 +3,8 @@ import random
 import pygame
 import math
 from src.logic.controller.render import render_nodes
-from src.simulator import GlobalConfig
+from src.simulator import GlobalConfig,Hook
+
 
 # Debug options (show ids, get readings etc.)
 def events_fn(*, objects, events, state):
@@ -45,6 +46,22 @@ def events_fn(*, objects, events, state):
 def render_fn(*, window, objects, state):
     nodes = objects[objects["type"] == "node"]
     render_nodes(nodes=nodes, window=window, state=state)
+
+class msg(Hook):
+    def __init__(self,cfg):
+        self.counter = 0
+
+    def msg1(self,objects):
+        # print("speriamo bene")
+        if self.counter == 5:
+            objects["prova"] = 5
+        print(objects["prova"])
+        self.counter +=1
+
+    def msg2(self,objects):
+        print("Ciao Mamma")
+        print(objects["prova"])
+        # Una volta sola
 
 
 

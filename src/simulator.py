@@ -107,6 +107,12 @@ class Hook:
     def end(self, objects):
         raise NotImplementedError()
     
+    def msg1(self, objects):
+        raise NotImplementedError()
+
+    def msg2(self, objects):
+        raise NotImplementedError()
+
 
 class Simulator:
     def __init__(self, cfg=None):
@@ -188,13 +194,41 @@ class Simulator:
             self.objects = fn(objects=self.objects, global_memory=self.global_memory)
 
     def run_hooks(self, stage):
-        assert stage in ["start", "tick", "end"]
+        assert stage in ["start", "tick", "end", "msg", "msg_start"]
         if stage == "start":
-            for hook in self.hooks: hook.start(self.objects)
+            for hook in self.hooks: 
+                try:
+                    hook.start(self.objects)
+                except:
+                    pass
+
         if stage == "tick":
-            for hook in self.hooks: hook.tick(self.objects)
+            for hook in self.hooks:
+                try:
+                    hook.tick(self.objects)
+                except: 
+                    pass
+
         if stage == "end":
-            for hook in self.hooks: hook.end(self.objects)
+            for hook in self.hooks:
+                try:
+                    hook.end(self.objects)
+                except:
+                    pass
+
+        if stage == "msg":
+            for hook in self.hooks:
+                try:
+                    hook.msg1(self.objects)
+                except: 
+                    pass
+
+        if stage == "msg_start":
+            for hook in self.hooks:
+                try:
+                    hook.msg2(self.objects)
+                except: 
+                    pass
 
     def run (
         self,
@@ -226,6 +260,7 @@ class Simulator:
                 clock = pygame.time.Clock()
         
         self.run_hooks("start")
+        self.run_hooks("msg_start")
         
         self.run_global_tick_fns()
 
@@ -244,6 +279,7 @@ class Simulator:
             
             self.events()
 
+            self.run_hooks("msg")
             self.run_tick_fns()
             self.run_global_tick_fns()
             
@@ -256,7 +292,7 @@ class Simulator:
                 )
                 if record:
                     frames.append(pygame.surfarray.array3d(window))
-            
+
             self.run_hooks("tick")
             
             if step >= ticks: break
