@@ -80,7 +80,7 @@ def main(cfg):
             )
         )
     )
-
+ 
 
     simulator.run(
         ticks=cfg.max_ticks,

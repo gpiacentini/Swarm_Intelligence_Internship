@@ -59,7 +59,7 @@ render:
     colors:
       idle: red
       bound: red
-      bounding: green
+      bounding: red
       bound-commit: yellow
       active: black
       exit: black
@@ -85,8 +85,9 @@ render:
     size: 5
     colors:
       fault: red
+      stuck: red
       intact: black
-      boundary: black
+      boundary: red
       levels:
         - "#FF0000"
         - "#FF8000"
@@ -105,8 +106,8 @@ render:
     show_connections: False
 
 clearml:
-  project: giada-drones
-  task: giada-drones-training
+  project: giacomo-drones
+  task: giacomo-drones-training
   output_uri: s3://s3.galatolo.xyz:443/clearml
   media_uri: s3://s3.galatolo.xyz:443/clearml-media
   tags: ""

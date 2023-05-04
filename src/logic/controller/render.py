@@ -13,14 +13,21 @@ def render_nodes(*, window, nodes, state):
             color = cfg.render.node.colors.fault
 
         position = node["x"], node["y"]
+
+        if node["stuck"]:
+            color = cfg.render.node.colors.stuck
+
+        position = node["x"], node["y"]
         
         if not node["fault"] and cfg.render.body.show_communication_radius:
            pygame.draw.circle(window, color, position, cfg.params.rc[0], 1)
 
         if not node["fault"] and cfg.render.body.show_perceive_radius:
             pygame.draw.circle(window, color, position, cfg.params.rs[0], 1)
-
-
+            
+        if not node["fault"] and cfg.render.body.show_connections:
+            for neighbor in node["gg_neighbours"]: #gg_neigbours
+                pygame.draw.line(window,"black",position,neighbor[0:2],1) #controlla neighbours
 
         if "display_ids" not in state or not state["display_ids"]:
             if not node["fault"]:

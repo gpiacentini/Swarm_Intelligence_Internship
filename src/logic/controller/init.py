@@ -12,7 +12,11 @@ def init_nodes(cfg, nodes, init_id=0):
             heading=node.heading,
             v=0.0,
             w=0.0,
-            prova = None,
+            state = 0,
+            stuck = False,
+            neighbours = [],
+            ordered_neighbours =[],
+            gg_neighbours = [],
 
             fault=bool(node.fault),
             boundary=bool(node.boundary),
