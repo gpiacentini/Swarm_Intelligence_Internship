@@ -11,12 +11,14 @@ def render_nodes(*, window, nodes, state):
         
         if node["fault"]:
             color = cfg.render.node.colors.fault
-
         position = node["x"], node["y"]
 
         if node["stuck"]:
             color = cfg.render.node.colors.stuck
+        position = node["x"], node["y"]
 
+        if node["hole"]:
+            color = cfg.render.node.colors.hole
         position = node["x"], node["y"]
         
         if not node["fault"] and cfg.render.body.show_communication_radius:

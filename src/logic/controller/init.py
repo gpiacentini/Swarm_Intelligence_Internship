@@ -14,6 +14,7 @@ def init_nodes(cfg, nodes, init_id=0):
             w=0.0,
             state = 0,
             stuck = False,
+            hole = False,
             neighbours = [],
             ordered_neighbours =[],
             gg_neighbours = [],

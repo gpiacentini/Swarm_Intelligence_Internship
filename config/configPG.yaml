@@ -47,7 +47,7 @@ params:
     n_rep: 1
 
 world:
-  size: [1000, 1000]
+  size: [700, 700]
   margin: [100, 100]
   fps: 30
   background: "white"
@@ -88,6 +88,7 @@ render:
       stuck: red
       intact: black
       boundary: red
+      hole: green
       levels:
         - "#FF0000"
         - "#FF8000"

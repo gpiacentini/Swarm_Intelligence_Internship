@@ -283,38 +283,53 @@ def is_left(a, b, c):
         return True
     else:
         return False
+    
+def get_non_boundary_nodes(current_node, visited):
+    # Initialize the set of non-boundary nodes
+    non_boundary_nodes = []
+    current_node_short = [current_node[0],current_node[1],current_node[2]]
+    # Iterate over all nodes in the visited set
+    for node in visited: #x,y,id
+        # Check if the node is connected to the current node
+        if node in current_node[3]:
+            # Check if the node is inside the boundary
+            is_inside = True
+            for other_node in visited:
+                if other_node != node and other_node != current_node_short and is_left(current_node_short, node, other_node):
+                    is_inside = False
+                    break
+
+            # If the node is not inside the boundary, add it to the non-boundary nodes set
+            if not is_inside:
+                non_boundary_nodes.append(node[2])
+
+    # Return the set of non-boundary nodes
+    return non_boundary_nodes
 
 
 def boundhole(stuck_nodes,objects):
     for i in zip(stuck_nodes.x,stuck_nodes.y,stuck_nodes.id,stuck_nodes.gg_neighbours):
-        #print(i)
-
     # Initialize the boundary and visited sets
         boundary = []
         visited = []
-        print('this is the start node:',(i[2]))
 
     # Add the starting node to the boundary set
         boundary.append(i)
-        print('This is the boundary list:',boundary)
-
+        #print('This is the first boundary',boundary)
     # Iterate until the boundary set is empty
         while boundary:
         # Get the next node from the boundary set and add it to visited
             current_node = boundary.pop()
-            print('This is the current node',current_node)
-            print('This is boundary',boundary)
-            visited.append([current_node[0],current_node[1],current_node[2]])
-            print('This is visited',visited)
-
+            visited.append([current_node[0],current_node[1],current_node[2]]) #x,y,id
+            #print('This is visited',visited)
         # Find all neighbors of the current node that have not been visited
-            for neighbor in current_node[3]:
-                print('These are the neighbours:', neighbor)
+            for neighbor in current_node[3]: #x,y,id
+                #print('These are the neighbours:', neighbor)
                 if neighbor not in visited:
                     # Check if the neighbor is inside the boundary
                     is_inside = True
                     for node in boundary:
-                        print('This is node:',node)
+                        #print('This is node:',node)
                         if is_left(current_node, neighbor, node):
                             is_inside = False
                             break
@@ -325,16 +340,19 @@ def boundhole(stuck_nodes,objects):
                         for i in zip(objects.x,objects.y,objects.id,objects.gg_neighbours):
                             if i[2] == neighbor[2]:
                                 boundary.append(i)
-            
+                                
+            non_boundary = get_non_boundary_nodes(current_node, visited)
+            print('This is non_boundary:', non_boundary)
+            print('This is boundary before removal',boundary)
+            boundary = [b for b in boundary if b[2] not in non_boundary]
+            print('Result',boundary)
+
+    # Return the list of nodes on the boundary of the hole
+    #print('These should be the final visited', visited)
+    for q in visited:
+        objects.hole[q[2]]=True
+    return list(visited)          
         
-
-
-
-
-            
-
-
-    
 
 class msg(Hook):
     def __init__(self,cfg):
